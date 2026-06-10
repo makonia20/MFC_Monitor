@@ -1,0 +1,237 @@
+:root {
+    --bg-color: #1a1a1a;
+    --card-bg: #242424;
+    --text-main: #ffffff;
+    --text-muted: #a0a0a0;
+    --color-green: #00c896;
+    --color-orange: #ff6b35;
+    --border-color: #333333;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-main);
+    font-family: 'Inter', sans-serif;
+    padding: 2rem;
+    min-height: 100vh;
+}
+
+.dashboard {
+    max-width: 1000px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.card {
+    background-color: var(--card-bg);
+    border-radius: 8px;
+    padding: 1.25rem;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+/* Stats Grid */
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+}
+
+.stat-card {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.card-title {
+    color: var(--text-muted);
+    font-size: 0.85rem;
+    font-weight: 500;
+}
+
+.badge {
+    font-size: 0.7rem;
+    padding: 0.15rem 0.4rem;
+    border-radius: 12px;
+    font-weight: 600;
+}
+
+.badge-green {
+    background-color: rgba(0, 200, 150, 0.15);
+    color: var(--color-green);
+    border: 1px solid rgba(0, 200, 150, 0.3);
+}
+
+.badge-orange {
+    background-color: rgba(255, 107, 53, 0.15);
+    color: var(--color-orange);
+    border: 1px solid rgba(255, 107, 53, 0.3);
+}
+
+.stat-value {
+    font-size: 1.75rem;
+    font-weight: 600;
+}
+
+.status-active {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+/* Main Grid */
+.section-title {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    font-weight: 500;
+    margin-bottom: 0.75rem;
+}
+
+.main-grid {
+    display: grid;
+    grid-template-columns: 250px 1fr;
+    gap: 1.5rem;
+}
+
+.left-col, .right-col {
+    display: flex;
+    flex-direction: column;
+}
+
+.oled-card {
+    padding: 0;
+    background-color: #000;
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 250px;
+}
+
+.oled-screen {
+    width: 100%;
+    height: 100%;
+    padding: 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.oled-content {
+    font-family: 'Space Mono', monospace;
+    color: #fff;
+    font-size: 0.9rem;
+    line-height: 1.6;
+    white-space: pre;
+    text-shadow: 0 0 2px rgba(255,255,255,0.5);
+    width: 100%;
+}
+
+.chart-card {
+    height: 250px;
+    padding: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+canvas {
+    width: 100% !important;
+    height: 100% !important;
+}
+
+/* Controls Section */
+.controls-card {
+    padding: 1.5rem;
+    border: 1px solid var(--border-color);
+    background-color: #2a2a2a;
+}
+
+.controls-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+}
+
+.control-group label {
+    display: block;
+    color: #fff;
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+    font-weight: 600;
+}
+
+.slider-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+input[type=range] {
+    flex: 1;
+    -webkit-appearance: none;
+    background: #444;
+    height: 4px;
+    border-radius: 2px;
+    outline: none;
+}
+
+input[type=range]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: #a0a0a0;
+    cursor: pointer;
+    border: 2px solid var(--card-bg);
+}
+
+.slider-val {
+    font-weight: 600;
+    font-size: 0.9rem;
+    min-width: 60px;
+    color: #fff;
+}
+
+/* Serial Monitor */
+.serial-monitor {
+    background-color: #0a0a0a;
+    border-radius: 6px;
+    border: 1px solid #1a1a1a;
+    padding: 1rem;
+    height: 150px;
+    overflow-y: auto;
+    font-family: 'Space Mono', monospace;
+    color: #00ff00;
+    font-size: 0.8rem;
+    line-height: 1.6;
+    scroll-behavior: smooth;
+}
+
+/* Custom Scrollbar */
+.serial-monitor::-webkit-scrollbar {
+    width: 12px;
+}
+.serial-monitor::-webkit-scrollbar-track {
+    background: #1a1a1a;
+    border-radius: 0 6px 6px 0;
+}
+.serial-monitor::-webkit-scrollbar-thumb {
+    background: #444;
+    border-radius: 6px;
+}

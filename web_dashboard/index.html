@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MFC Voltage Dashboard</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Mono&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="dashboard">
+        <!-- Top Stats Cards -->
+        <div class="stats-grid">
+            <div class="card stat-card">
+                <div class="card-header">
+                    <span class="card-title">Raw MFC voltage</span>
+                    <span class="badge badge-green">GPIO 34</span>
+                </div>
+                <div class="stat-value" id="val-raw">0.202 V</div>
+            </div>
+            
+            <div class="card stat-card">
+                <div class="card-header">
+                    <span class="card-title">Amplified pin</span>
+                    <span class="badge badge-orange">GPIO 35</span>
+                </div>
+                <div class="stat-value" id="val-amp">2.017 V</div>
+            </div>
+
+            <div class="card stat-card">
+                <div class="card-header">
+                    <span class="card-title">Back-calc true V</span>
+                </div>
+                <div class="stat-value" id="val-calc">0.202 V</div>
+            </div>
+
+            <div class="card stat-card">
+                <div class="card-header">
+                    <span class="card-title">Hardware Status</span>
+                    <span class="badge" id="port-badge" style="background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2);">COM?</span>
+                </div>
+                <div class="stat-value" id="val-status" style="font-size: 1.0rem; margin-top: 0.5rem; line-height: 1.2;">Disconnected</div>
+            </div>
+        </div>
+
+        <!-- Middle Section -->
+        <div class="main-grid">
+            <div class="left-col">
+                <h3 class="section-title">OLED preview (128&times;64)</h3>
+                <div class="card oled-card">
+                    <div class="oled-screen">
+                        <div class="oled-content" id="oled-content">-- MFC Voltage --
+-----------------
+Raw: 0.202 V
+
+Amp pin: 2.017 V
+Calc: 0.202 V</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="right-col">
+                <h3 class="section-title">Real-time chart</h3>
+                <div class="card chart-card">
+                    <canvas id="mfcChart"></canvas>
+                </div>
+            </div>
+        </div>
+
+        <!-- Hardware Settings -->
+        <div class="card controls-card">
+            <h3 class="section-title">Hardware Configuration</h3>
+            <div class="controls-grid" style="grid-template-columns: 1fr 1fr;">
+                <div class="control-group">
+                    <label>Amplifier Gain Factor</label>
+                    <div style="display: flex; gap: 10px; align-items: center; margin-top: 10px;">
+                        <input type="number" id="hardware-gain-input" min="1" max="1000" step="0.1" value="50" style="background: #1a1a1a; color: #fff; border: 1px solid #333; padding: 8px; border-radius: 4px; width: 100px; font-size: 1.1rem; text-align: center; outline: none;">
+                        <span style="font-size: 1.2rem; color: #a0a0a0;">&times;</span>
+                    </div>
+                </div>
+                
+                <div class="control-group">
+                    <label>Manual COM Port Selection</label>
+                    <div style="display: flex; gap: 10px; align-items: center; margin-top: 10px;">
+                        <select id="port-selector" style="background: #1a1a1a; color: #fff; border: 1px solid #333; padding: 8px; border-radius: 4px; width: 140px; font-size: 1rem; outline: none;">
+                            <option value="">Auto-Detect</option>
+                        </select>
+                        <button id="btn-refresh-ports" style="background: #333; color: #fff; border: none; padding: 8px 12px; border-radius: 4px; cursor: pointer; font-family: 'Inter';">Refresh</button>
+                    </div>
+                    <small style="color: #a0a0a0; font-size: 0.8rem; margin-top: 8px; display: block;">Force connect to a specific port</small>
+                </div>
+            </div>
+        </div>
+
+
+
+        <!-- Serial Monitor -->
+        <div class="serial-section">
+            <h3 class="section-title">Serial monitor output:</h3>
+            <div class="serial-monitor" id="serial-output"></div>
+        </div>
+    </div>
+    
+    <script src="script.js"></script>
+</body>
+</html>
